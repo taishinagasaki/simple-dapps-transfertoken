@@ -1,8 +1,8 @@
 {
   "name": "meti-hackathon",
   "version": "1.0.0",
-  "description": "",
-  "main": "",
+  "description": "Hello, Ethereum! スマートコントラクトの開発を学んで、Ethereum を使った DApp の開発にチャレンジしましょう。 このリポジトリでは、Hello, World レベルの DApp を試す事ができます。",
+  "main": "truffle-config.js",
   "directories": {
     "test": "test"
   },
@@ -14,13 +14,21 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "truffle": "^5.0.3",
-    "truffle-hdwallet-provider": "^1.0.3",
+    "truffle": "^5.0.27",
+    "truffle-hdwallet-provider": "^1.0.14",
     "web3": "^1.0.0-beta.37"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "parcel-bundler": "^1.11.0"
-  }
+    "parcel-bundler": "^1.12.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rantan/meti-hackathon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rantan/meti-hackathon/issues"
+  },
+  "homepage": "https://github.com/rantan/meti-hackathon#readme"
 }
