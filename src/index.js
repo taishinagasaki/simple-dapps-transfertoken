@@ -7,6 +7,48 @@ var smartContractAddress = "0xcF58DF0bc779676e9E38DA4B9D72eb47672B547F";
 // ABI(Application Binary Interface) はブロックチェーンの外からコントラクトを利用するための
 // インターフェースの定義です。
 var abi = [
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "message",
+			"outputs": [
+				{
+					"name": "",
+					"type": "string"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function",
+			"signature": "0xe21f37ce"
+		},
+		{
+			"inputs": [
+				{
+					"name": "initMessage",
+					"type": "string"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "constructor",
+			"signature": "constructor"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "newMessage",
+					"type": "string"
+				}
+			],
+			"name": "update",
+			"outputs": [],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function",
+			"signature": "0x3d7403a3"
+		}
 ];
 
 let myAccount;
