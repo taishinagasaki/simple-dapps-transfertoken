@@ -3,6 +3,7 @@ import Web3 from "web3";
 
 // ブロックチェーンにデプロイしたスマートコントラクトのアドレス
 var smartContractAddress = "0xcF58DF0bc779676e9E38DA4B9D72eb47672B547F";
+var smartContractAdressGoodnight ""; //新規追加分のアドレス記載todo
 
 // ABI(Application Binary Interface) はブロックチェーンの外からコントラクトを利用するための
 // インターフェースの定義です。
@@ -51,13 +52,19 @@ var abi = [
 		}
 ];
 
+var abigoodnight = [
+
+];//新規追加分のABIを記述する。todo
+
 let myAccount;
 let web3;
 let contractInstance;
+let contractInstanceGoodnight;
 
 async function initApp() {
   myAccount = (await web3.eth.getAccounts())[0];
   contractInstance = new web3.eth.Contract(abi, smartContractAddress);
+  contractInstanceGoodnight = new web3.eth.Contract(abigoodnight, smartContractAdressGoodnight);
 }
 
 window.updateMessageValue = async () => {
@@ -81,6 +88,28 @@ window.updateMessageValue = async () => {
   }
 };
 
+//ADD 2019/07/17
+window.updateGoodnightValue = async () => {
+  const msgGoodString = document.getElementById("goodnightvalue").value;
+
+  if (!msgGoodString){
+  return window.alert("Good message value is empty")
+  }
+
+  try {
+    let option = {
+      from: myAccount,
+      gasPrice: "2000000000",
+      gas: "41000",
+    };
+    await contractInstanceGoodnight.methods.update(msgGoodString).send(option);
+
+    console.log('MESSAGE UPDAtTED IN BLOCKCHIAN SUCCESSFULLY',result); 
+  } catch (err) {
+  console.log(err);
+  } 
+};
+
 window.refreshMessageValue = async () => {
   try {
     const result = await contractInstance.methods.message().call();
@@ -90,6 +119,16 @@ window.refreshMessageValue = async () => {
     console.log(err);
   }
 };
+//ADD 2019/07/17
+window.refreshGoodnightValue = async () => {
+   try {
+     const result = await contractInstanceGoodnight.methods.message().call();
+     console.log('Fetched msg value from blockchain:', result);
+     document.getElementById("goodnight").innerText = result;
+   } catch (err) {
+     console.log(err);
+   }
+ };
 
 window.addEventListener('load', async function() {
 // web3 がブラウザのアドオンなどから提供されているかチェックします。(MetaMask)
