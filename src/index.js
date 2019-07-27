@@ -3,7 +3,7 @@ import Web3 from "web3";
 
 // ブロックチェーンにデプロイしたスマートコントラクトのアドレス
 var smartContractAddress = "0xcF58DF0bc779676e9E38DA4B9D72eb47672B547F";
-var smartContractAdressGoodnight = "0xFf53Af70f660b9772f58aE002EB82e1601c36a9a"; //新規追加分のアドレス記載todo
+var smartContractAdressGoodnight = "0x50311282Ef0ade5548D28050287643CA578e6D87"; //新規追加分のアドレス記載todo
 
 // ABI(Application Binary Interface) はブロックチェーンの外からコントラクトを利用するための
 // インターフェースの定義です。
@@ -53,7 +53,7 @@ var abi = [
 ];
 
 var abigoodnight = [
-{
+    {
       "constant": true,
       "inputs": [],
       "name": "message",
@@ -94,6 +94,44 @@ var abigoodnight = [
       "stateMutability": "nonpayable",
       "type": "function",
       "signature": "0x3d7403a3"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "x",
+          "type": "uint256"
+        }
+      ],
+      "name": "set",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x60fe47b1"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get",
+      "outputs": [
+        {
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_state",
+          "type": "uint256"
+        },
+        {
+          "name": "_message",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x6d4ce63c"
     }
 ];//新規追加分のABIを記述する。todo
 
@@ -129,7 +167,7 @@ window.updateMessageValue = async () => {
   }
 };
 
-//ADD 2019/07/17
+//JUST COPY Hello.sol
 window.updateGoodnightValue = async () => {
   const msgGoodString = document.getElementById("goodnightvalue").value;
 
@@ -140,7 +178,7 @@ window.updateGoodnightValue = async () => {
   try {
     let option = {
       from: myAccount,
-      gasPrice: "2000000000",
+      gasPrice: "200000000000",
       gas: "41000",
     };
     await contractInstanceGoodnight.methods.update(msgGoodString).send(option);
@@ -160,7 +198,7 @@ window.refreshMessageValue = async () => {
     console.log(err);
   }
 };
-//ADD 2019/07/17
+//JUST COPY Hello.sol
 window.refreshGoodnightValue = async () => {
    try {
      const result = await contractInstanceGoodnight.methods.message().call();
@@ -170,6 +208,43 @@ window.refreshGoodnightValue = async () => {
      console.log(err);
    }
  };
+
+
+//ADD set and get value
+//set
+window.setGoodnightValue = async () => {
+  const valueGoodnight = document.getElementById("goodnightsetvalue").value;
+
+  if (!valueGoodnight){
+  return window.alert("Good value is empty")
+  }
+
+  try {
+  let option = {
+    from: myAccount,
+    gasPrice:  "200000000000",
+    gas: "410000",
+  };
+  await contractInstanceGoodnight.methods.set(valueGoodnight).send(option);
+
+  console.log('MESSAGE SET IN BLOCKCHAIN YOU SET!!', result);
+  }catch (err) {
+  console.log(err)
+  }
+};
+
+//get
+window.getGoodnightValue = async () => {
+  try {
+    const result = await contractInstanceGoodnight.methods.get().call();
+    console.log('get value from blockchain which you set last time', result);
+    var str = result[0] + result[1] + result[2];
+    document.getElementById("goodnightgetvalue").innerText = str;
+  } catch (err) {
+    console.log(err)
+  }
+};
+
 
 window.addEventListener('load', async function() {
 // web3 がブラウザのアドオンなどから提供されているかチェックします。(MetaMask)
