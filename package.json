@@ -7,11 +7,11 @@
     "test": "test"
   },
   "engines": {
-    "node": "11.12.0", 
+    "node": "11.12.0",
     "npm": "6.7.0"
   },
   "scripts": {
-    "start": "parcel ./src/index.html",
+    "start": "node_modules/parcel-bundler/bin/cli.js parcel src/index.html",
     "test": "rm -rf build && truffle test"
   },
   "author": "",
