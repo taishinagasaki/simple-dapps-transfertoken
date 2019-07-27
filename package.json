@@ -11,7 +11,7 @@
     "npm": "6.7.0"
   },
   "scripts": {
-    "start": "node_modules/parcel-bundler/bin/cli.js parcel src/index.html",
+    "start": "npm bin parcel src/index.html",
     "test": "rm -rf build && truffle test"
   },
   "author": "",
