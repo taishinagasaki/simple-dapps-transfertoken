@@ -1,13 +1,17 @@
 {
   "name": "meti-hackathon",
   "version": "1.0.0",
-  "description": "Hello, Ethereum! スマートコントラクトの開発を学んで、Ethereum を使った DApp の開発にチャレンジしましょう。 このリポジトリでは、Hello, World レベルの DApp を試す事ができます。",
+  "description": "ぱくっています！Hello, Ethereum! スマートコントラクトの開発を学んで、Ethereum を使った DApp の開発にチャレンジしましょう。 このリポジトリでは、Hello, World レベルの DApp を試す事ができます。",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": "11.12.0", 
+    "npm": "6.7.0"
+  },
   "scripts": {
-    "start": "parcel src/index.html",
+    "start": "parcel ./src/index.html",
     "test": "rm -rf build && truffle test"
   },
   "author": "",
@@ -22,10 +26,6 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "parcel-bundler": "^1.12.3"
-  },
-  "engines": {
-    "node": "11.12.0",
-    "npm": "6.7.0"
   },
   "repository": {
     "type": "git",
