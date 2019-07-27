@@ -29,6 +29,7 @@
      "test": "rm -rf build && truffle test",
      "dev": "parcel src/index.html",
      "build": "parcel build src/index.html",
+     "start": "parcel src/index.html",
      "heroku-postbuild": "parcel build src/index.html"
   },
   "repository": {
