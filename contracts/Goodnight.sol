@@ -8,6 +8,10 @@ contract Goodnight {
   Room[] public rooms;
   uint256 myVariable;
 
+  mapping (uint => address) public goodnightvalueToOwner;
+  mapping (address => uint) ownerGoodnightCount;
+  mapping (address => uint) lastSetGoodnightvalue;
+
   constructor(string memory initMessage) public {
     message = initMessage;
   }
@@ -19,9 +23,16 @@ contract Goodnight {
     myVariable = uint256(x);
     Room memory room = Room(uint256(x), uint256(x+1));   
     rooms.push(room);
+
+    goodnightvalueToOwner[x] = msg.sender;
+    ownerGoodnightCount[msg.sender]++;
+    lastSetGoodnightvalue[msg.sender] = x;
   }
 
-  function get() view public returns (uint _id, uint _state, string memory _message) {
-    return (rooms[rooms.length-1].whosTurnId, rooms[rooms.length-1].roomState, message);
+  function get() view public returns (uint _id, uint _state, string memory _message, uint _goodnightcount, address _lastsetvalueaccount, uint _lastValueset) {
+    uint ownedGoodnightvalueCount = ownerGoodnightCount[msg.sender];
+    address lastSetvalueAccount = goodnightvalueToOwner[rooms[rooms.length-1].whosTurnId];
+    uint lastvaluOfGoodnightvalue = lastSetGoodnightvalue[lastSetvalueAccount];
+    return (rooms[rooms.length-1].whosTurnId, rooms[rooms.length-1].roomState, message, ownedGoodnightvalueCount, lastSetvalueAccount, lastvaluOfGoodnightvalue);
   }
 }
