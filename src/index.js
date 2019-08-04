@@ -3,7 +3,7 @@ import Web3 from "web3";
 
 // ブロックチェーンにデプロイしたスマートコントラクトのアドレス
 var smartContractAddress = "0x3E6E997a7fb003Ce6232004E7df32aC03441DF19";
-var smartContractAdressGoodnight = "0xADdE76a96650abF52907098d10AE368393783761"; //新規追加分のアドレス記載todo
+var smartContractAdressGoodnight = "0x09a8E34F77DC6f887B4523F30F35E98f1cD7166d"; //新規追加分のアドレス記載todo
 
 // ABI(Application Binary Interface) はブロックチェーンの外からコントラクトを利用するための
 // インターフェースの定義です。
@@ -74,7 +74,8 @@ var abigoodnight = [
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "signature": "0x1bae0ac8"
     },
     {
       "constant": true,
@@ -88,7 +89,8 @@ var abigoodnight = [
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "signature": "0xe21f37ce"
     },
     {
       "constant": true,
@@ -107,7 +109,8 @@ var abigoodnight = [
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "signature": "0xfca6f324"
     },
     {
       "inputs": [
@@ -118,7 +121,54 @@ var abigoodnight = [
       ],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "constructor"
+      "type": "constructor",
+      "signature": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event",
+      "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "_approved",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event",
+      "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
     },
     {
       "constant": false,
@@ -132,7 +182,8 @@ var abigoodnight = [
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function"
+      "type": "function",
+      "signature": "0x3d7403a3"
     },
     {
       "constant": false,
@@ -146,7 +197,8 @@ var abigoodnight = [
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function"
+      "type": "function",
+      "signature": "0x60fe47b1"
     },
     {
       "constant": true,
@@ -180,7 +232,101 @@ var abigoodnight = [
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "signature": "0x6d4ce63c"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "_balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x70a08231"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x6352211e"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xa9059cbb"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x095ea7b3"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "takeOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xb2e6ceeb"
     }
 ];//新規追加分のABIを記述する。todo
 
@@ -289,6 +435,65 @@ window.getGoodnightValue = async () => {
     console.log('get value from blockchain which you set last time', result);
     var str = result[0] + result[1] + result[2];
     document.getElementById("goodnightgetvalue").innerText = str;
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+//balanceOf
+window.getBalanceOfAddress = async () => {
+
+  const addresstoknowbalance = document.getElementById("addresstoknowbalance").value;
+  if (!addresstoknowbalance){
+    return window.alert("address is empty")
+  }
+
+  const result = await contractInstanceGoodnight.methods.balanceOf(addresstoknowbalance).call();
+  console.log('get value from blockchain which you set last time', result);
+  document.getElementById("showBalanceOfAddress").innerText = result;
+  try {
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+//address own token
+window.getTokenOwner = async () => {
+
+  const tokentoknowaddress = document.getElementById("tokentoknowaddress").value;
+  if (!tokentoknowaddress){
+    return window.alert("token is empty")
+  }
+  const result = await contractInstanceGoodnight.methods.ownerOf(tokentoknowaddress).call();
+  console.log('get address who has token', result);
+  document.getElementById("showAddressOfToken").innerText = result;
+  try {
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+//transfer token
+window.transferToken = async () => {
+
+  const tokentoaddress = document.getElementById("tokentoaddress").value;
+  if (!tokentoaddress){
+    return window.alert("address is empty")
+  }
+  const tokentosend = document.getElementById("tokentosend").value;
+  if (!tokentosend){
+    return window.alert("token is empty")
+  }
+  
+  try {
+  let option = {
+    from: myAccount,
+    gasPrice:  "200000000000",
+    gas: "410000",
+  };
+  
+  const result = await contractInstanceGoodnight.methods.transfer(tokentoaddress, tokentosend).send(option);
+  console.log('transfer token', result);
   } catch (err) {
     console.log(err)
   }

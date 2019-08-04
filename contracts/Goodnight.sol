@@ -1,5 +1,8 @@
 pragma solidity >=0.4.21 <0.6.0;
-contract Goodnight {
+
+import "./erc721.sol";
+
+contract Goodnight is ERC721 {
   string public message;
   struct Room {
     uint256 whosTurnId;
@@ -11,6 +14,8 @@ contract Goodnight {
   mapping (uint => address) public goodnightvalueToOwner;
   mapping (address => uint) ownerGoodnightCount;
   mapping (address => uint) lastSetGoodnightvalue;
+
+  mapping (uint => address) goodnightApprovals;
 
   constructor(string memory initMessage) public {
     message = initMessage;
@@ -35,4 +40,36 @@ contract Goodnight {
     uint lastvaluOfGoodnightvalue = lastSetGoodnightvalue[lastSetvalueAccount];
     return (rooms[rooms.length-1].whosTurnId, rooms[rooms.length-1].roomState, message, ownedGoodnightvalueCount, lastSetvalueAccount, lastvaluOfGoodnightvalue);
   }
+
+  function balanceOf(address _owner) public view returns (uint256 _balance) {
+    //number of goodnightmessage owner has...
+    return ownerGoodnightCount[_owner];
+  }
+
+  function ownerOf(uint256 _tokenId) public view returns (address _owner) {
+    //owner address who has tokenId
+    return goodnightvalueToOwner[_tokenId];
+  }
+
+  function _transfer(address _from, address _to, uint256 _tokenId) private {
+    ownerGoodnightCount[_to]++;
+    ownerGoodnightCount[_from]--;
+    goodnightvalueToOwner[_tokenId] = _to;
+    emit Transfer(_from, _to, _tokenId);
+  }
+
+  function transfer(address _to, uint256 _tokenId) public {
+    _transfer(msg.sender, _to, _tokenId);
+  }
+
+  function approve(address _to, uint256 _tokenId) public {
+    goodnightApprovals[_tokenId] = _to;
+    emit Approval(msg.sender, _to, _tokenId);
+  }
+
+  function takeOwnership(uint256 _tokenId) public {
+    address owner = ownerOf(_tokenId);
+    _transfer(owner, msg.sender, _tokenId);
+  }
+
 }

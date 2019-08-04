@@ -40,7 +40,7 @@
 
 <body>
 <div>
-    <h1>Blockchain Demo</h1><br>
+    <h1>[expired]Blockchain Demo</h1><br>
 
     <span>
         <p id="message"></p>
@@ -54,7 +54,7 @@
 
 </div>
 <div>
-    <h1>goodnight message</h1><br>
+    <h1>[expired]goodnight message</h1><br>
     <span>
       <p id="goodnight"></p>
       <button onclick="refreshGoodnightValue()">Refresh Goodnight value</button>
@@ -69,14 +69,45 @@
 <div>
     <h1>goodnight value</h1><br>
     <span>
+      <p>check the last token you set</p>
       <p id="goodnightgetvalue"></p>
       <button onclick="getGoodnightValue()">Get Goodnight value</button>
     </span>
     <br><br><br>
     <span>
-        <input id="goodnightsetvalue" type="number" placeholder="enter new goodnight value here" style="width:200px" />
-        <button onclick="setGoodnightValue()" > Set Goodnight value</button>
+      <h2>set token from here</h2>
+      <p>able to create token and set token to address</p>
+        <input id="goodnightsetvalue" type="number" placeholder="set token id you want to create and set" style="width:200px" />
+        <button onclick="setGoodnightValue()" > Set Goodnight token</button>
     </span>
+</div>
+
+<div>
+    <h1>goodnight value token transfer</h1><br>
+    <h2>check the token's count owned by specific accout</h2>
+    <span>
+      <input id="addresstoknowbalance" type="text" placeholder="enter account address you want to know" style="width:200px" />
+      <p id="showBalanceOfAddress"></p>
+      <button onclick="getBalanceOfAddress()">check the token's count owned by specific accout</button>
+    </span>
+    <br><br><br>
+    
+    <h2>check the address own token</h2>
+    <span>
+      <input id="tokentoknowaddress" type="number" placeholder="enter tokenid" style="width:200px" />
+      <p id="showAddressOfToken"></p>
+      <button onclick="getTokenOwner()">check the token owned by specific accout</button>
+    </span>
+    <br><br><br>
+
+    <h2>transfer token to the other</h2>
+    <span>
+      <input id="tokentoaddress" type="text" placeholder="put address as destination" style="width:200px" />
+      <input id="tokentosend" type="number" placeholder="put tokenId to send" style="width:200px" />
+      <button onclick="transferToken()">transfer token to the other address</button>
+    </span>
+    <br><br><br>
+
 </div>
 
 </body>
