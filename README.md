@@ -14,3 +14,8 @@ https://github.com/taishinagasaki/simple-dapps
 に下記を追加する。
 取得した値を、登録者accountのaddressと紐づけてBC上へ保存する。
 そしてaccount毎に登録した値を取り出せるようにした。
+## 2019/08/04
+https://simple-dapps-transfer-token.herokuapp.com/
+に下記を追加する。
+ERC721を使ってトークンの移動をできるようにした。
+単純な移動関数のみを使っており、相互承認までは実装していない。
