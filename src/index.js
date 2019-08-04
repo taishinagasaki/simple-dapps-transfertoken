@@ -3,7 +3,7 @@ import Web3 from "web3";
 
 // ブロックチェーンにデプロイしたスマートコントラクトのアドレス
 var smartContractAddress = "0x3E6E997a7fb003Ce6232004E7df32aC03441DF19";
-var smartContractAdressGoodnight = "0x09a8E34F77DC6f887B4523F30F35E98f1cD7166d"; //新規追加分のアドレス記載todo
+var smartContractAdressGoodnight = "0xaa8d7a51C330c6409Fe46F52ED9fa401BEff42fA"; //新規追加分のアドレス記載todo
 
 // ABI(Application Binary Interface) はブロックチェーンの外からコントラクトを利用するための
 // インターフェースの定義です。
